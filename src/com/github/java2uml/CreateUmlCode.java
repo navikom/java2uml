@@ -74,10 +74,16 @@ public class CreateUmlCode {
         @Override
         public void visit(ClassOrInterfaceDeclaration n, Object arg) {
 
-
-            if (n.getImplements() != null || n.getExtends() != null) {
-                List<ClassOrInterfaceType> list = (n.getImplements() == null ? n.getExtends() : n.getImplements());
-                for (ClassOrInterfaceType type : list)
+            if (n.getImplements() != null) {
+                source.append("\n");
+                for (ClassOrInterfaceType type : n.getImplements()) {
+                    source.append(type.getName());
+                    source.append(" <|-- ");
+                    source.append(n.getName() + "\n");
+                }
+            }
+            if (n.getExtends() != null) {
+                for (ClassOrInterfaceType type : n.getExtends())
                     source.append("\n" + type.getName());
                 source.append(" <|-- ");
                 source.append(n.getName() + "\n\n");
