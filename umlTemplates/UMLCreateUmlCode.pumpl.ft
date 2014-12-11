@@ -1,0 +1,32 @@
+@startuml
+abstract class Car{
+ -Engine engine
+ ~Gear gear
+ -init()
+ +toString()
+ +getEngine()
+ +setEngine(Engine engine)
+ +getGear()
+ +setGear(Gear gear)
+}
+class Engine{
+ -int power
+ +getPower()
+ +setPower(int power)
+ +toString()
+}
+interface Gear{
+ +setGear(int gear)
+ +nextGear()
+}
+
+Gear <|-- Manual
+
+class Manual{
+ -int count
+ +setCount(int count)
+ +setGear(int gear)
+ +nextGear()
+ +toString()
+}
+@enduml
